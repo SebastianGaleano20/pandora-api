@@ -2,16 +2,17 @@
 - API para una empresa panificadora.
 ## Lista de tareas
 - [x] Instalar gestor de paquetes.
-- [] Crear carpetas:
-   - [] Helpers
-   - [] Controllers
-   - [] Middlewares
-   - [] Routes
+- [x] Crear carpetas:
+   - [x] Helpers
+   - [x] Controllers
+   - [x] Middlewares
+   - [x] Routes
+   - [x] utils
 - [x] Crear archivo index.js
 - [] Crear servidor
 - [x] Crear archivo data.js momentaneo
-- [] Crear API RESTful: 
-   - [] Metodos HTTP
+- [x] Crear API RESTful: 
+   - [x] Metodos HTTP
 - []
 - []
 - []
