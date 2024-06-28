@@ -1,6 +1,6 @@
 export const PRODUCTS = [
     {
-        "id": 1,
+        "id": "1",
         "product": "Budin de Mandarina",
         "price": 6500,
         "category": "Budines",

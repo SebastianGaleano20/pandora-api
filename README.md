@@ -10,3 +10,8 @@
 - [x] Crear archivo index.js
 - [] Crear servidor
 - [x] Crear archivo data.js momentaneo
+- [] Crear API RESTful: 
+   - [] Metodos HTTP
+- []
+- []
+- []
