@@ -13,7 +13,7 @@
 - [x] Crear archivo data.js momentaneo.
 - [x] Crear API RESTful: 
    - [x] Metodos HTTP.
-- [] Crear router.
+- [x] Crear router.
 - [] Crear middlewares.
 - [] Crear controladores.
 - [] 
