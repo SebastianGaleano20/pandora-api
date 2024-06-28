@@ -5,7 +5,7 @@
   "description": "API - Examen 2 Global Learning",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --watch index.js"
+    "dev": "node --watch index.js"
   },
   "keywords": [
     "server express",
