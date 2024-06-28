@@ -1,11 +1,12 @@
 # Pandora-api
 - API para una empresa panificadora.
 ## Lista de tareas
-- [] Instalar gestor de paquetes.
+- [x] Instalar gestor de paquetes.
 - [] Crear carpetas:
    - [] Helpers
    - [] Controllers
    - [] Middlewares
    - [] Routes
-- [] Crear archivo index.js
-- [] Crear variable de entorno
+- [x] Crear archivo index.js
+- [] Crear servidor
+- [x] Crear archivo data.js momentaneo

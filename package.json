@@ -1,0 +1,22 @@
+{
+  "name": "pandora-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "API - Examen 2 Global Learning",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm --watch index.js"
+  },
+  "keywords": [
+    "server express",
+    "API",
+    "nodejs"
+  ],
+  "author": "Sebastian Galeano",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "express": "4.19.2",
+    "uuid": "10.0.0"
+  }
+}
