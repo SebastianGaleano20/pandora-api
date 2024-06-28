@@ -1,24 +1,14 @@
 import { Router } from 'express';
-import res from 'express/lib/response';
 import { v4 as uuidv4 } from 'uuid';
 
 export const productRoutes = (PRODUCTS) => {
     const productRouter = Router();
 
     productRouter.route('/products')
-    
-    productRouter.get('/products', (_, res) => {
+    .get((_, res) => {
         return res.json(PRODUCTS);
     })
-    productRouter.get('/products/:id', (req, res) => {
-        const { id } = req.params;
-        const product = PRODUCTS.find((product) => product.id === id);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-        return res.status(200).json(product);
-    })
-    productRouter.post('/products', (req, res) => {
+    .post((req, res) => {
         const newProduct = req.body;
         const products = structuredClone(PRODUCTS);
         products.push({
@@ -27,7 +17,17 @@ export const productRoutes = (PRODUCTS) => {
         })
         return res.status(201).json(products);
     })
-    productRouter.put('/products/:id', (req, res) => {
+    
+    productRouter.route('/products/:id')
+    .get((req, res) => {
+        const { id } = req.params;
+        const product = PRODUCTS.find((product) => product.id === id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        return res.status(200).json(product);
+    })
+    .put((req, res) => {
         const { id } = req.params;
         const products = structuredClone(PRODUCTS);
         const product = products.find((product) => product.id === id)
@@ -39,7 +39,7 @@ export const productRoutes = (PRODUCTS) => {
         products.splice(index, 1, { id: product.id, ...updateProduct })
         return res.status(200).json(products);
     })
-    productRouter.delete('/products/:id', (req, res) => {
+    .delete((req, res) => {
         const { id } = req.params;
         const products = structuredClone(PRODUCTS);
         const product = products.find((product) => product.id === id)
