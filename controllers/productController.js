@@ -4,15 +4,23 @@ export const productController = (PRODUCTS) => {
     const getProducts = ((_request, response) => {
         return response.json(PRODUCTS);
     });
-    const createProduct = ((request, response) => {
+    const createProduct = ((request, response, next) => {
         const newProduct = request.body;
         const products = structuredClone(PRODUCTS);
-        products.push({
-            id: uuidv4(),
-            ...newProduct
-        })
-        return response.status(201).json(products);
+        try {
+            if (!newProduct.price || !newProduct.product) {
+                throw new Error('Product name and price are required')
+            }
+            products.push({
+                id: uuidv4(),
+                ...newProduct
+            })
+            return response.status(201).json(products);
+        } catch (error) {
+            next(error)
+        }
     })
+
     const getProductById = ((request, response) => {
         const { id } = request.params;
         const product = PRODUCTS.find((product) => product.id === id);

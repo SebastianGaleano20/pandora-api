@@ -15,5 +15,11 @@
    - [x] Metodos HTTP.
 - [x] Crear router.
 - [] Crear middlewares.
-- [] Crear controladores.
+   -[] errorHandler
+- [x] Crear controladores.
+   - [x] getProducts
+   - [x] createdProduct
+   - [x] updateProduct
+   - [x] getProductById
+   - [x] deleteProduct
 - [] 
