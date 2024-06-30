@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
+
 export const productController = (PRODUCTS) => {
     const getProducts = ((_request, response) => {
         return response.json(PRODUCTS);
