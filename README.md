@@ -1,7 +1,8 @@
 # Pandora-api
 - API para una empresa panificadora.
 ## Lista de tareas
-- [x] Instalar gestor de paquetes.
+- [x] Instalar gestor de paquetes. (pnpm)
+- [x] Instalar dependencias del proyecto. (dotenv,express,uuid)
 - [x] Crear carpetas:
    - [x] Helpers.
    - [x] Controllers.
@@ -9,17 +10,16 @@
    - [x] Routes.
    - [x] utils.
 - [x] Crear archivo index.js.
-- [x] Crear servidor.
-- [x] Crear archivo data.js momentaneo.
+- [x] Crear servidor. (express)
+- [x] Crear archivo data.js momentaneo. (database)
 - [x] Crear API RESTful: 
-   - [x] Metodos HTTP.
-- [x] Crear router.
-- [] Crear middlewares.
-   -[x] errorHandler
+   - [x] Metodos HTTP. (POST,GET,PUT,DELETE)
 - [x] Crear controladores.
    - [x] getProducts
    - [x] createdProduct
    - [x] updateProduct
    - [x] getProductById
    - [x] deleteProduct
-- [] 
+- [x] Crear router. (Router + Controllers)
+- [] Crear middlewares.
+   -[x] errorHandler
