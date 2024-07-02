@@ -1,4 +1,5 @@
-export const ERROR_HANDLER = {
+//Objeto que contiene los diferentes errores de mi aplicacion
+const ERROR_HANDLER = {
     defaultError: (response, error) => {
         response
             .status(500)
@@ -9,6 +10,7 @@ export const ERROR_HANDLER = {
     }
 }
 
+//Middleware que maneja los errores
 export const errorHandler = (error, _request, response, _next) => {
     console.error('Error Handler');
 
