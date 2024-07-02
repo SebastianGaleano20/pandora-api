@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-
+//Controladores de mi api
 export const productController = (PRODUCTS) => {
     const getProducts = ((_request, response) => {
         return response.json(PRODUCTS);
