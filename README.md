@@ -23,3 +23,5 @@
 - [x] Crear router. (Router + Controllers)
 - [] Crear middlewares.
    -[x] errorHandler
+- [] Conectar PostgreSQL
+- [] Conectar Prisma
