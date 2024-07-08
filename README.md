@@ -21,7 +21,7 @@
    - [x] getProductById
    - [x] deleteProduct
 - [x] Crear router. (Router + Controllers)
-- [] Crear middlewares.
+- [x] Crear middlewares.
    -[x] errorHandler
-- [] Conectar PostgreSQL
-- [] Conectar Prisma
+- [x] Conectar PostgreSQL
+- [x] Conectar Prisma
