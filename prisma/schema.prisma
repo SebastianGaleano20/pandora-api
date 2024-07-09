@@ -8,16 +8,30 @@ datasource db {
 }
 
 model Products {
-  id        Int      @id @default(autoincrement())
-  product   String   @db.VarChar(80)
-  price     Int
-  category  String   @db.VarChar(80)
-  //isTacc
-  //image
-  //stock
-  description String
-  createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  productName String   @unique @db.VarChar(80) @map("product_name")
+  price       Int
+  category    String   @db.VarChar(80)
+  isVegan     Boolean  @default(false) @map("is_vegan")
+  image       String   @db.Text
+  stock       Boolean  @db.Boolean
+  description String   @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updateAt    DateTime @updatedAt @map("update_at")
 
   @@map("products")
+}
+
+model Users {
+  id         Int      @id @default(autoincrement())
+  firstName  String   @db.VarChar(80) @map("first_name")
+  secondName String   @db.VarChar(80) @map("second_name")
+  lastName   String   @db.VarChar(80) @map("last_name")
+  email      String   @unique @db.VarChar(254)
+  isAdmin    Boolean  @default(false) @map("is_admin")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updateAt   DateTime @updatedAt @map("update_at")
+
+  @@unique([firstName, secondName, lastName])
+  @@map("users")
 }
