@@ -1,9 +1,24 @@
 import { v4 as uuidv4 } from 'uuid';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 //Controladores de los diferentes metodos HTTP de mi aplicación
 export const productController = (PRODUCTS) => {
-    const getProducts = ((_request, response) => {
+    const getProducts = async (_request, response, next) => {
+        try {
+            const products = await prisma.products.findMany();
+            return response.status(200).json(products);
+        } catch (error) {
+            next(error);
+        } finally {
+            await PrismaClient.$disconnect();
+        }
+    }
+
+    /*const getProducts = ((_request, response) => {
         return response.json(PRODUCTS);
-    });
+    });*/
     const createProduct = ((request, response, next) => {
         const newProduct = request.body;
         const products = structuredClone(PRODUCTS);
