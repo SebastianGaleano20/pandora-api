@@ -32,3 +32,6 @@
 - [] Crear tabla user_product ( model)
 - [] Crear tabla user_admin (model)
 - [] Instalar Prisma Client
+- [] Configurar Prisma Client
+- [] Modificar funciones controllers con prisma (CRUD)
+- [] 
