@@ -1,6 +1,5 @@
 # Pandora-api
 - API para una empresa panificadora.
-## P
 
 ## Lista de tareas
 - [x] Instalar gestor de paquetes. (pnpm)
@@ -27,11 +26,11 @@
    -[x] errorHandler
 - [x] Conectar PostgreSQL
 - [x] Conectar Prisma
-- [] Cambiar tipo de dato de PRICE en tabla PRODUCTS de INT a FLOAT
-- [] Añadir campos Products[] a Users y Users[] a Productos para la relacion muchos a muchos
-- [] Crear tabla user_product ( model)
+- [x] Cambiar tipo de dato de PRICE en tabla PRODUCTS de INT a FLOAT
+- [x] Añadir campos Products[] a Users y Users[] a Productos para la relacion muchos a muchos
+- [x] Crear model purchase
 - [] Crear tabla user_admin (model)
-- [] Instalar Prisma Client
-- [] Configurar Prisma Client
+- [x] Instalar Prisma Client
+- [x] Configurar Prisma Client
 - [] Modificar funciones controllers con prisma (CRUD)
 - [] 

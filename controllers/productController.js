@@ -12,13 +12,14 @@ export const productController = (PRODUCTS) => {
         } catch (error) {
             next(error);
         } finally {
-            await PrismaClient.$disconnect();
+            await prisma.$disconnect();
         }
     }
 
     /*const getProducts = ((_request, response) => {
         return response.json(PRODUCTS);
     });*/
+
     const createProduct = ((request, response, next) => {
         const newProduct = request.body;
         const products = structuredClone(PRODUCTS);
