@@ -26,7 +26,9 @@ export const productController = (PRODUCTS) => {
     const createProduct = async (request, response, next) => {
         const newProduct = request.body;
         try {
-            const createdProduct =  await prisma.products.create(newProduct)
+            const createdProduct =  await prisma.products.create({
+                data: newProduct
+            })
             const responseFormat = {
                 data: createdProduct,
                 message: 'Products created successfully'

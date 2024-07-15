@@ -19,15 +19,17 @@ model Products {
   updateAt    DateTime    @updatedAt @map("update_at")
   purchase    Purchases[]
   categoryId  Int         @map("category_id")
-  category    Categories    @relation(fields: [categoryId], references: [id])
+  category    Categories  @relation(fields: [categoryId], references: [id])
 
   @@map("products")
 }
 
 model Categories {
-  id      Int        @id @default(autoincrement())
-  name    String     @unique
-  product Products[]
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  createdAt DateTime   @default(now()) @map("created_at")
+  updateAt  DateTime   @updatedAt @map("update_at")
+  product   Products[]
 
   @@map("categories")
 }
