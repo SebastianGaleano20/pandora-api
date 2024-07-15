@@ -3,6 +3,7 @@ import { PRODUCTS } from './data.js';
 import dotenv from 'dotenv';
 import { productRoutes } from './routes/producRouter.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { categoriesRouter } from './routes/categoryRouter.js';
 
 //Configuracion de mi variable de entorno PORT
 dotenv.config();
@@ -12,6 +13,7 @@ const app = express(); //Creacion de mi servidor
 app.use(express.json()); //Middleware que permite leer JSON del request.body
 
 app.use('/api', productRoutes(PRODUCTS)); //Uso de mi router
+app.use('/api', categoriesRouter)
 app.use(errorHandler);  //Middleware de errores
 
 //Servidor en escucha

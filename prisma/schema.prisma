@@ -11,7 +11,6 @@ model Products {
   id          Int         @id @default(autoincrement())
   productName String      @unique @map("product_name") @db.VarChar(80)
   price       Float
-  category    String      @db.VarChar(80)
   isVegan     Boolean     @default(false) @map("is_vegan")
   image       String      @db.Text
   stock       Boolean     @db.Boolean
@@ -19,8 +18,18 @@ model Products {
   createdAt   DateTime    @default(now()) @map("created_at")
   updateAt    DateTime    @updatedAt @map("update_at")
   purchase    Purchases[]
+  categoryId  Int         @map("category_id")
+  category    Categories    @relation(fields: [categoryId], references: [id])
 
   @@map("products")
+}
+
+model Categories {
+  id      Int        @id @default(autoincrement())
+  name    String     @unique
+  product Products[]
+
+  @@map("categories")
 }
 
 model Users {
@@ -39,11 +48,13 @@ model Users {
 }
 
 model Purchases {
-  userId    Int
-  productId Int
+  userId    Int      @map("user_id")
+  productId Int      @map("product_id")
   quantity  Int
   user      Users    @relation(fields: [userId], references: [id])
   product   Products @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@id([userId, productId])
+  @@map("purchases")
 }

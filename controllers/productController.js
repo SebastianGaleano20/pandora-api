@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -8,7 +7,11 @@ export const productController = (PRODUCTS) => {
     const getProducts = async (_request, response, next) => {
         try {
             const products = await prisma.products.findMany();
-            return response.status(200).json(products);
+            const responseFormat = {
+                data: products,
+                message: 'Products retrieved successfully'
+            }
+            return response.status(200).json(responseFormat);
         } catch (error) {
             next(error);
         } finally {
@@ -20,23 +23,22 @@ export const productController = (PRODUCTS) => {
         return response.json(PRODUCTS);
     });*/
 
-    const createProduct = ((request, response, next) => {
+    const createProduct = async (request, response, next) => {
         const newProduct = request.body;
-        const products = structuredClone(PRODUCTS);
         try {
-            if (!newProduct.price || !newProduct.product) {
-                throw new Error('Product name and price are required')
+            const createdProduct =  await prisma.products.create(newProduct)
+            const responseFormat = {
+                data: createdProduct,
+                message: 'Products created successfully'
             }
-            products.push({
-                id: uuidv4(),
-                ...newProduct
-            })
-            return response.status(201).json(products);
+            return response.status(201).json(responseFormat);
         } catch (error) {
             next(error)
+        }finally{
+            await prisma.$disconnect()
         }
-    })
-
+    }
+    
     const getProductById = ((request, response) => {
         const { id } = request.params;
         const product = PRODUCTS.find((product) => product.id === id);
