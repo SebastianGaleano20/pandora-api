@@ -26,7 +26,7 @@ export const productController = (PRODUCTS) => {
     const createProduct = async (request, response, next) => {
         const newProduct = request.body;
         try {
-            const createdProduct =  await prisma.products.create({
+            const createdProduct = await prisma.products.create({
                 data: newProduct
             })
             const responseFormat = {
@@ -36,19 +36,32 @@ export const productController = (PRODUCTS) => {
             return response.status(201).json(responseFormat);
         } catch (error) {
             next(error)
-        }finally{
+        } finally {
             await prisma.$disconnect()
         }
     }
-    
-    const getProductById = ((request, response) => {
-        const { id } = request.params;
-        const product = PRODUCTS.find((product) => product.id === id);
-        if (!product) {
-            return response.status(404).json({ message: 'Product not found' });
+
+    const getProductById = async (request, response, next) => {
+        const { id } = request.params
+        const productId = Number(id)
+        try {
+            const product = await prisma.products.findUnique({
+                where: {
+                    id: productId
+                }
+            })
+            const responseFormat = {
+                data: product,
+                message: 'Product retrieved successfully'
+            }
+            return response.status(200).json(responseFormat);
+        } catch (error) {
+            next(error)
+        } finally {
+            await prisma.$disconnect()
         }
-        return response.status(200).json(product);
-    })
+    }
+
     const updateProduct = ((request, response) => {
         const { id } = request.params;
         const products = structuredClone(PRODUCTS);
