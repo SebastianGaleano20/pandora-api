@@ -19,10 +19,6 @@ export const productController = (PRODUCTS) => {
         }
     }
 
-    /*const getProducts = ((_request, response) => {
-        return response.json(PRODUCTS);
-    });*/
-
     const createProduct = async (request, response, next) => {
         const newProduct = request.body;
         try {
@@ -74,17 +70,28 @@ export const productController = (PRODUCTS) => {
         products.splice(index, 1, { id: product.id, ...updateProduct })
         return response.status(200).json(products);
     })
-    const deleteProduct = ((req, res) => {
-        const { id } = req.params;
-        const products = structuredClone(PRODUCTS);
-        const product = products.find((product) => product.id === id)
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' })
+
+    const deleteProduct = async (request, response, next) => {
+        const { id } = request.params
+        const productId = Number(id)
+        try {
+            const product = await prisma.products.delete({
+                where: {
+                    id: productId
+                }
+            })
+            const responseFormat = {
+                data: product,
+                message: 'Product delete successfully'
+            }
+            return response.status(200).json(responseFormat);
+        } catch (error) {
+            next(error)
+        } finally {
+            await prisma.$disconnect()
         }
-        const index = products.indexOf(product)
-        products.splice(index, 1)
-        return res.status(200).json(products);
-    })
+    }
+
     return {
         getProducts,
         createProduct,
