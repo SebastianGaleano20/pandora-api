@@ -3,8 +3,10 @@ import { productController } from '../controllers/productController.js'; //Contr
 
 export const productRoutes = () => {
     const productRouter = Router(); //Creamos el router de mi app
+
     //Desestructuramos los controladores de mi aplicacion
     const { getProducts, createProduct, getProductById, deleteProduct, updateProduct } = productController();
+
     //Creamos las rutas (url) de mi aplicacion con sus respectivos metodos
     productRouter.route('/products')
         .get(getProducts)
@@ -12,7 +14,7 @@ export const productRoutes = () => {
 
     productRouter.route('/products/:id')
         .get(getProductById)
-        .put(updateProduct)
+        .patch(updateProduct)
         .delete(deleteProduct)
     return productRouter;
 }

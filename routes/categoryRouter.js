@@ -6,8 +6,8 @@ export const categoriesRouter = () => {
     const { getCategories, createCategory } = categoryController();
 
     categoryRouter.route('/categories')
-    .get(getCategories)
-    .post(createCategory)
-    
+        .get(getCategories)
+        .post(createCategory)
+
     return categoryRouter
 }

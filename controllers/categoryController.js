@@ -17,13 +17,13 @@ export const categoryController = () => {
             await prisma.$disconnect()
         }
     }
-    const createCategory = async (request,response, next) =>{
+    const createCategory = async (request, response, next) => {
         const newCategory = request.body
         try {
             const createdCategory = await prisma.categories.create({
                 data: newCategory
             })
-            
+
             const responseFormat = {
                 data: createdCategory,
                 message: 'Category created successfully'
@@ -31,7 +31,7 @@ export const categoryController = () => {
             return response.status(201).json(responseFormat)
         } catch (error) {
             next(error)
-        }finally{
+        } finally {
             await prisma.$disconnect()
         }
     }
