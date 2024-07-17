@@ -39,7 +39,7 @@ export const productController = (PRODUCTS) => {
 
     const getProductById = async (request, response, next) => {
         const { id } = request.params
-        const productId = Number(id)
+        const productId = id
         try {
             const product = await prisma.products.findUnique({
                 where: {
@@ -60,7 +60,7 @@ export const productController = (PRODUCTS) => {
 
     const updateProduct = async (request, response, next) => {
         const { id } = request.params
-        const productId = Number(id)
+        const productId = id
         const newProductData = request.body
 
         try {
@@ -85,7 +85,7 @@ export const productController = (PRODUCTS) => {
 
     const deleteProduct = async (request, response, next) => {
         const { id } = request.params
-        const productId = Number(id)
+        const productId = id
         try {
             const product = await prisma.products.delete({
                 where: {

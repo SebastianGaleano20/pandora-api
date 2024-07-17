@@ -14,7 +14,7 @@ export const bodyProductSchema = Joi.object({
 
 export const idProductSchema = Joi.object({
     params: Joi.object({
-        id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
+        id: Joi.string().required()
     })
 })
 
