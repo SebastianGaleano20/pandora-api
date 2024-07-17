@@ -18,6 +18,9 @@ export const categorySchema = Joi.object({
     name: Joi.string().required(),
     id: Joi.string().patern(/^[0-9]+$/,'id must be a number').required()
 })
+export const idCategorySchema = Joi.object({
+    id: Joi.string().patern(/^[0-9]+$/,'id must be a number').required()
+})
 
 export const userSchema = Joi.object({
     firstName: Joi.string().max(80).required(),
