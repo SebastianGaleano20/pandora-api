@@ -1,9 +1,18 @@
 import Joi from 'joi'
 
-export const categorySchema = Joi.object({
-    name: Joi.string().required(),
-    id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
+export const bodyCategorySchema = Joi.object({
+    body: Joi.string({
+        name: Joi.string().required(),
+        id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
+    })
 })
 export const idCategorySchema = Joi.object({
-    id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
+    params: ({
+        id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
+    })
+})
+
+export const updateCategorySchema = Joi.object({
+    body: bodyCategorySchema.extract('body'),
+    params: idCategorySchema.extract('params')
 })

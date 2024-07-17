@@ -1,7 +1,7 @@
 import { categorySchema } from '../schemas/categorySchema.js'
 
 //Funcion de orden superior
-export const schemaValidator = (schema) => async (request, response, next) => {
+export const schemaProductValidator = (schema) => async (request, response, next) => {
     const { error } = schema.validate({
         body: request.body,
         params: request.params,
@@ -13,6 +13,17 @@ export const schemaValidator = (schema) => async (request, response, next) => {
     error ? next(error) : next()
 }
 
+export const schemaCategoryValidator = (schema) => async (request, response, next) => {
+    const { error } = schema.validate({
+        body: request.body,
+        params: request.params,
+        query: request.query
+    },{
+        abortEarly: false,
+        allowUnknown: true
+    })
+    error ? next(error) : next()
+}
 
 /*
 export const validateProduct = async (request, response, next) => {
@@ -33,10 +44,3 @@ export const validateIdProduct = async (request, response, next) => {
     next()
 }
 */
-
-export const validateCategory = async (request, response, next) => {
-    const { error } = categorySchema.validate(request.body)
-    if (error) {
-        return response.status(400).json({ message: error.message })
-    }
-}

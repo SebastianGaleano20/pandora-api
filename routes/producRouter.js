@@ -1,6 +1,6 @@
 import { Router } from 'express'; //Router de express a utilizar
 import { productController } from '../controllers/productController.js'; //Controladores de mi api
-import { schemaValidator } from '../middlewares/validations.js';
+import { schemaProductValidator } from '../middlewares/validations.js';
 import { bodyProductSchema, idProductSchema, updateProductSchema } from '../schemas/productSchema.js'
 
 export const productRoutes = () => {
@@ -12,12 +12,12 @@ export const productRoutes = () => {
     //Creamos las rutas (url) de mi aplicacion con sus respectivos metodos
     productRouter.route('/products')
         .get(getProducts)
-        .post(schemaValidator(bodyProductSchema), createProduct)
+        .post(schemaProductValidator(bodyProductSchema), createProduct)
 
     productRouter.route('/products/:id')
-        .get(schemaValidator(idProductSchema), getProductById)
-        .patch(schemaValidator(updateProductSchema), updateProduct)
-        .delete(schemaValidator(idProductSchema), deleteProduct)
+        .get(schemaProductValidator(idProductSchema), getProductById)
+        .patch(schemaProductValidator(updateProductSchema), updateProduct)
+        .delete(schemaProductValidator(idProductSchema), deleteProduct)
 
     return productRouter;
 }
