@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-export const productSchemas = Joi.object({
+export const productSchema = Joi.object({
     productName: Joi.string().max(80).required(),
     price: Joi.number(),
     isVegan: Joi.boolean(),
@@ -11,7 +11,7 @@ export const productSchemas = Joi.object({
 })
 
 export const idProductSchema = Joi.object({
-    id: Joi.string().patern(/^[0-9]+$/, 'id must be a number').required()
+    id: Joi.string().pattern(/^[0-9]+$/, 'id must be a number').required()
 })
 
 export const userSchema = Joi.object({
