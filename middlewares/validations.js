@@ -1,5 +1,6 @@
 import { categorySchema } from '../schemas/categorySchema.js'
 
+//Funcion de orden superior
 export const schemaValidator = (schema) => async (request, response, next) => {
     const { error } = schema.validate({
         body: request.body,

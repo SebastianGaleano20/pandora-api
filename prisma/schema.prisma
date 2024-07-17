@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Products {
-  id          Int         @id @default(autoincrement())
+  id          String         @id @default(uuid()) 
   productName String      @unique @map("product_name") @db.VarChar(80)
   price       Float
   isVegan     Boolean     @default(false) @map("is_vegan")
@@ -51,7 +51,7 @@ model Users {
 
 model Purchases {
   userId    Int      @map("user_id")
-  productId Int      @map("product_id")
+  productId String      @map("product_id")
   quantity  Int
   user      Users    @relation(fields: [userId], references: [id])
   product   Products @relation(fields: [productId], references: [id])
