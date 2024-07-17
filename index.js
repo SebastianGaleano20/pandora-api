@@ -9,10 +9,13 @@ dotenv.config();
 const SERVER_PORT = process.env.SERVER_PORT || 2010;
 
 const app = express(); //Creacion de mi servidor
+
 app.use(express.json()); //Middleware que permite leer JSON del request.body
 
 app.use('/api', productRoutes()); //Uso de mi router
-app.use('/api',categoriesRouter())
+
+app.use('/api', categoriesRouter())
+
 app.use(errorHandler);  //Middleware de errores
 
 //Servidor en escucha

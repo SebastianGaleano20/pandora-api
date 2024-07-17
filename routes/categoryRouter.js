@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { categoryController } from '../controllers/categoryController.js';
+import { validateCategory } from '../middlewares/validations.js';
 
 export const categoriesRouter = () => {
     const categoryRouter = Router();
@@ -7,11 +8,11 @@ export const categoriesRouter = () => {
 
     categoryRouter.route('/categories')
         .get(getCategories)
-        .post(createCategory)
-    
+        .post(validateCategory, createCategory)
+
     categoryRouter.route('/categories/:id')
         .get(getCategoryById)
-        .patch(updateCategory)
+        .patch(validateCategory, updateCategory)
         .delete(deleteCategory)
     return categoryRouter
 }
