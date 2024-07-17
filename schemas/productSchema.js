@@ -3,11 +3,11 @@ import Joi from 'joi'
 export const bodyProductSchema = Joi.object({
     body: Joi.object({
         productName: Joi.string().max(80).required(),
-        price: Joi.number(),
-        isVegan: Joi.boolean(),
-        image: Joi.string().uri(),
-        stock: Joi.boolean(),
-        description: Joi.string(),
+        price: Joi.number().required(),
+        isVegan: Joi.boolean().required(),
+        image: Joi.string().uri().required(),
+        stock: Joi.boolean().required(),
+        description: Joi.string().required(),
         categoryId: Joi.number().required()
     })
 })
