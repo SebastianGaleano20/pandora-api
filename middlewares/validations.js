@@ -9,10 +9,7 @@ export const schemaValidator = (schema) => async (request, response, next) => {
         abortEarly: false,
         allowUnknown: true
     })
-    if (error) {
-        return response.status(400).json({ message: error.message })
-    }
-    next()
+    error ? next(error) : next()
 }
 
 
