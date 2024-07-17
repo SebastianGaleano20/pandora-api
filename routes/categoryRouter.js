@@ -11,7 +11,7 @@ export const categoriesRouter = () => {
         .post(validateCategory, createCategory)
 
     categoryRouter.route('/categories/:id')
-        .get(validateCategory ,getCategoryById)
+        .get(validateCategory, getCategoryById)
         .patch(validateCategory, updateCategory)
         .delete(validateCategory, deleteCategory)
     return categoryRouter
