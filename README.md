@@ -29,8 +29,7 @@
 - [x] Cambiar tipo de dato de PRICE en tabla PRODUCTS de INT a FLOAT
 - [x] Añadir campos Products[] a Users y Users[] a Productos para la relacion muchos a muchos
 - [x] Crear model purchase
-- [] Crear tabla user_admin (model)
 - [x] Instalar Prisma Client
 - [x] Configurar Prisma Client
-- [] Modificar funciones controllers con prisma (CRUD)
-- [] 
+- [x] Modificar funciones controllers con prisma (CRUD)
+- [x] Instalar Joi y configurar middleware
