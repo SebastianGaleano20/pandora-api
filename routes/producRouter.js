@@ -10,12 +10,12 @@ export const productRoutes = () => {
 
     //Creamos las rutas (url) de mi aplicacion con sus respectivos metodos
     productRouter.route('/products')
-        .get(getProducts)
+        .get(validateProduct, getProducts)
         .post(validateProduct, createProduct)
 
     productRouter.route('/products/:id')
-        .get(getProductById)
+        .get(validateProduct, getProductById)
         .patch(validateProduct, updateProduct)
-        .delete(deleteProduct)
+        .delete(validateProduct, deleteProduct)
     return productRouter;
 }

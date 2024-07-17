@@ -7,12 +7,12 @@ export const categoriesRouter = () => {
     const { getCategories, createCategory, updateCategory, deleteCategory, getCategoryById } = categoryController();
 
     categoryRouter.route('/categories')
-        .get(getCategories)
+        .get(validateCategory, getCategories)
         .post(validateCategory, createCategory)
 
     categoryRouter.route('/categories/:id')
-        .get(getCategoryById)
+        .get(validateCategory ,getCategoryById)
         .patch(validateCategory, updateCategory)
-        .delete(deleteCategory)
+        .delete(validateCategory, deleteCategory)
     return categoryRouter
 }
