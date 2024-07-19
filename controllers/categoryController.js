@@ -4,12 +4,12 @@ import HTTP_STATUS from '../helpers/httpStatus';
 const prisma = new PrismaClient()
 
 export const categoryController = () => {
-    const getCategories = async (_request, response, next) => {
+    const getCategory = async (_request, response, next) => {
         try {
-            const categories = await prisma.categories.findMany()
+            const category = await prisma.category.findMany()
             const responseFormat = {
-                data: categories,
-                message: 'Categories retrieved successfully'
+                data: category,
+                message: 'category retrieved successfully'
             }
             return response.status(HTTP_STATUS.OK).json(responseFormat)
         } catch (error) {
@@ -21,7 +21,7 @@ export const categoryController = () => {
     const createCategory = async (request, response, next) => {
         const newCategory = request.body
         try {
-            const createdCategory = await prisma.categories.create({
+            const createdCategory = await prisma.category.create({
                 data: newCategory
             })
 
@@ -41,7 +41,7 @@ export const categoryController = () => {
         const { id } = request.params
         const categoryId = Number(id)
         try {
-            const category = await prisma.categories.findUnique({
+            const category = await prisma.category.findUnique({
                 where: {
                     id: categoryId
                 }
@@ -65,7 +65,7 @@ export const categoryController = () => {
         const newCategoryData = request.body
 
         try {
-            const category = await prisma.categories.update({
+            const category = await prisma.category.update({
                 where: {
                     id: categoryId
                 },
@@ -88,7 +88,7 @@ export const categoryController = () => {
         const { id } = request.params
         const categorytId = Number(id)
         try {
-            const category = await prisma.categories.delete({
+            const category = await prisma.category.delete({
                 where: {
                     id: categorytId
                 }
@@ -106,7 +106,7 @@ export const categoryController = () => {
     }
 
     return {
-        getCategories,
+        getCategory,
         createCategory,
         updateCategory,
         deleteCategory,

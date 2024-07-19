@@ -4,10 +4,10 @@ import HTTP_STATUS from '../helpers/httpStatus';
 const prisma = new PrismaClient();
 
 //Controladores de los diferentes metodos HTTP de mi aplicación
-export const productController = (PRODUCTS) => {
+export const productController = () => {
     const getProducts = async (_request, response, next) => {
         try {
-            const products = await prisma.products.findMany();
+            const products = await prisma.product.findMany();
             const responseFormat = {
                 data: products,
                 message: 'Products retrieved successfully'
@@ -23,12 +23,12 @@ export const productController = (PRODUCTS) => {
     const createProduct = async (request, response, next) => {
         const newProduct = request.body;
         try {
-            const createdProduct = await prisma.products.create({
+            const createdProduct = await prisma.product.create({
                 data: newProduct
             })
             const responseFormat = {
                 data: createdProduct,
-                message: 'Products created successfully'
+                message: 'Product created successfully'
             }
             return response.status(HTTP_STATUS.CREATED).json(responseFormat);
         } catch (error) {
@@ -42,7 +42,7 @@ export const productController = (PRODUCTS) => {
         const { id } = request.params
         const productId = id
         try {
-            const product = await prisma.products.findUnique({
+            const product = await prisma.product.findUnique({
                 where: {
                     id: productId
                 }
@@ -65,7 +65,7 @@ export const productController = (PRODUCTS) => {
         const newProductData = request.body
 
         try {
-            const product = await prisma.products.update({
+            const product = await prisma.product.update({
                 where: {
                     id: productId
                 },
@@ -88,7 +88,7 @@ export const productController = (PRODUCTS) => {
         const { id } = request.params
         const productId = id
         try {
-            const product = await prisma.products.delete({
+            const product = await prisma.product.delete({
                 where: {
                     id: productId
                 }

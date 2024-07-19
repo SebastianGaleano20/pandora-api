@@ -5,13 +5,13 @@ import { bodyCategorySchema, idCategorySchema } from '../schemas/categorySchema.
 
 export const categoriesRouter = () => {
     const categoryRouter = Router();
-    const { getCategories, createCategory, updateCategory, deleteCategory, getCategoryById } = categoryController();
+    const { getCategory, createCategory, updateCategory, deleteCategory, getCategoryById } = categoryController();
 
-    categoryRouter.route('/categories')
-        .get(getCategories)
+    categoryRouter.route('/category')
+        .get(getCategory)
         .post(schemaCategoryValidator(bodyCategorySchema), createCategory)
 
-    categoryRouter.route('/categories/:id')
+    categoryRouter.route('/category/:id')
         .get(schemaCategoryValidator(idCategorySchema), getCategoryById)
         .patch(schemaCategoryValidator(bodyCategorySchema), updateCategory)
         .delete(schemaCategoryValidator(idCategorySchema), deleteCategory)

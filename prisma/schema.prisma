@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Products {
+model Product {
   id          String         @id @default(uuid()) 
   productName String      @unique @map("product_name") @db.VarChar(80)
   price       Float
@@ -17,24 +17,24 @@ model Products {
   description String      @db.Text
   createdAt   DateTime    @default(now()) @map("created_at")
   updateAt    DateTime    @updatedAt @map("update_at")
-  purchase    Purchases[]
+  purchase    Purchase[]
   categoryId  Int         @map("category_id")
-  category    Categories  @relation(fields: [categoryId], references: [id])
+  category    Category  @relation(fields: [categoryId], references: [id])
 
-  @@map("products")
+  @@map("product")
 }
 
-model Categories {
+model Category {
   id        Int        @id @default(autoincrement())
   name      String     @unique
   createdAt DateTime   @default(now()) @map("created_at")
   updateAt  DateTime   @updatedAt @map("update_at")
-  product   Products[]
+  product   Product[]
 
-  @@map("categories")
+  @@map("category")
 }
 
-model Users {
+model User {
   id         Int         @id @default(autoincrement())
   firstName  String      @map("first_name") @db.VarChar(80)
   secondName String      @map("second_name") @db.VarChar(80)
@@ -43,20 +43,20 @@ model Users {
   isAdmin    Boolean     @default(false) @map("is_admin")
   createdAt  DateTime    @default(now()) @map("created_at")
   updateAt   DateTime    @updatedAt @map("update_at")
-  purchase   Purchases[]
+  purchase   Purchase[]
 
   @@unique([firstName, secondName, lastName])
-  @@map("users")
+  @@map("user")
 }
 
-model Purchases {
+model Purchase {
   userId    Int      @map("user_id")
   productId String      @map("product_id")
   quantity  Int
-  user      Users    @relation(fields: [userId], references: [id])
-  product   Products @relation(fields: [productId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   createdAt DateTime @default(now()) @map("created_at")
 
   @@id([userId, productId])
-  @@map("purchases")
+  @@map("purchase")
 }
