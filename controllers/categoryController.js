@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import HTTP_STATUS from '../helpers/httpStatus';
 
 const prisma = new PrismaClient()
 
@@ -10,7 +11,7 @@ export const categoryController = () => {
                 data: categories,
                 message: 'Categories retrieved successfully'
             }
-            return response.status(200).json(responseFormat)
+            return response.status(HTTP_STATUS.OK).json(responseFormat)
         } catch (error) {
             next(error)
         } finally {
@@ -28,7 +29,7 @@ export const categoryController = () => {
                 data: createdCategory,
                 message: 'Category created successfully'
             }
-            return response.status(201).json(responseFormat)
+            return response.status(HTTP_STATUS.CREATED).json(responseFormat)
         } catch (error) {
             next(error)
         } finally {
@@ -49,7 +50,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category retrieved successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -75,7 +76,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category update successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -96,7 +97,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category delete successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
