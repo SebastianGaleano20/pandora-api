@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import HTTP_STATUS from '../helpers/httpStatus';
 
 const prisma = new PrismaClient();
 
@@ -11,7 +12,7 @@ export const productController = (PRODUCTS) => {
                 data: products,
                 message: 'Products retrieved successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error);
         } finally {
@@ -29,7 +30,7 @@ export const productController = (PRODUCTS) => {
                 data: createdProduct,
                 message: 'Products created successfully'
             }
-            return response.status(201).json(responseFormat);
+            return response.status(HTTP_STATUS.CREATED).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -50,7 +51,7 @@ export const productController = (PRODUCTS) => {
                 data: product,
                 message: 'Product retrieved successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -75,7 +76,7 @@ export const productController = (PRODUCTS) => {
                 data: product,
                 message: 'Product update successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -96,7 +97,7 @@ export const productController = (PRODUCTS) => {
                 data: product,
                 message: 'Product delete successfully'
             }
-            return response.status(200).json(responseFormat);
+            return response.status(HTTP_STATUS.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
