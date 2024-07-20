@@ -40,6 +40,7 @@ model User {
   secondName String      @map("second_name") @db.VarChar(80)
   lastName   String      @map("last_name") @db.VarChar(80)
   email      String      @unique @db.VarChar(254)
+  password   String
   isAdmin    Boolean     @default(false) @map("is_admin")
   createdAt  DateTime    @default(now()) @map("created_at")
   updateAt   DateTime    @updatedAt @map("update_at")

@@ -1,12 +1,15 @@
 import httpStatus from '../helpers/httpStatus.js'
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
 export const userController = () => {
   const register = async (request, response, next) => {
     const newUser = request.body
-    const hashedPassword = await encrypt(newUser.password)
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(newUser.password, salt)
+    //const hashedPassword = await encrypt(newUser.password)
     newUser.password = hashedPassword
 
     try {
@@ -43,7 +46,7 @@ export const userController = () => {
         })
       }
 
-      const isPasswordValid = await verified(password, user.password)
+      const isPasswordValid = await bcrypt.compare(password, user.password)
 
       if (!isPasswordValid) {
         return response.status(httpStatus.UNAUTHORIZED).json({
