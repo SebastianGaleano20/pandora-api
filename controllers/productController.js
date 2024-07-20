@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import HTTP_STATUS from '../helpers/httpStatus';
+import { PrismaClient } from '@prisma/client'
+import httpStatus from '../helpers/httpStatus.js'
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,7 @@ export const productController = () => {
                 data: products,
                 message: 'Products retrieved successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error);
         } finally {
@@ -30,7 +30,7 @@ export const productController = () => {
                 data: createdProduct,
                 message: 'Product created successfully'
             }
-            return response.status(HTTP_STATUS.CREATED).json(responseFormat);
+            return response.status(httpStatus.CREATED).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -51,7 +51,7 @@ export const productController = () => {
                 data: product,
                 message: 'Product retrieved successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -76,7 +76,7 @@ export const productController = () => {
                 data: product,
                 message: 'Product update successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {

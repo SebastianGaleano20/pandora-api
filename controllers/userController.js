@@ -1,8 +1,6 @@
 import httpStatus from '../helpers/httpStatus.js'
-
-import { encrypt, verified } from '../utils/bcrypt.js'
-
 import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 
 export const userController = () => {
@@ -12,7 +10,7 @@ export const userController = () => {
     newUser.password = hashedPassword
 
     try {
-      const createdUser = await prisma.users.create({
+      const createdUser = await prisma.user.create({
         data: newUser
       })
 

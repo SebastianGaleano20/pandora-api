@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { categoryController } from '../controllers/categoryController.js';
-import { schemaCategoryValidator } from '../middlewares/validations.js';
-import { bodyCategorySchema, idCategorySchema } from '../schemas/categorySchema.js';
+import { categoryController } from '../controllers/categoryController.js'
+import { schemaCategoryValidator } from '../middlewares/validations.js'
+import { bodyCategorySchema, idCategorySchema } from '../schemas/categorySchema.js'
 
-export const categoriesRouter = () => {
-    const categoryRouter = Router();
-    const { getCategory, createCategory, updateCategory, deleteCategory, getCategoryById } = categoryController();
+export const categoryRouter = () => {
+    const categoryRouter = Router()
+    const { getCategory, createCategory, updateCategory, deleteCategory, getCategoryById } = categoryController()
 
     categoryRouter.route('/category')
         .get(getCategory)

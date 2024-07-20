@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import HTTP_STATUS from '../helpers/httpStatus';
+import httpStatus from '../helpers/httpStatus.js'
 
 const prisma = new PrismaClient()
 
