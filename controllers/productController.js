@@ -1,22 +1,22 @@
 import { PrismaClient } from '@prisma/client'
 import httpStatus from '../helpers/httpStatus.js'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 //Controladores de los diferentes metodos HTTP de mi aplicación
 export const productController = () => {
     const getProducts = async (_request, response, next) => {
         try {
-            const products = await prisma.product.findMany();
+            const products = await prisma.product.findMany()
             const responseFormat = {
                 data: products,
                 message: 'Products retrieved successfully'
             }
-            return response.status(httpStatus.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat)
         } catch (error) {
-            next(error);
+            next(error)
         } finally {
-            await prisma.$disconnect();
+            await prisma.$disconnect()
         }
     }
 
@@ -97,7 +97,7 @@ export const productController = () => {
                 data: product,
                 message: 'Product delete successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
