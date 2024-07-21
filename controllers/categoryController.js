@@ -11,7 +11,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category retrieved successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat)
+            return response.status(httpStatus.OK).json(responseFormat)
         } catch (error) {
             next(error)
         } finally {
@@ -29,7 +29,7 @@ export const categoryController = () => {
                 data: createdCategory,
                 message: 'Category created successfully'
             }
-            return response.status(HTTP_STATUS.CREATED).json(responseFormat)
+            return response.status(httpStatus.CREATED).json(responseFormat)
         } catch (error) {
             next(error)
         } finally {
@@ -50,7 +50,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category retrieved successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -76,7 +76,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category update successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {
@@ -97,7 +97,7 @@ export const categoryController = () => {
                 data: category,
                 message: 'category delete successfully'
             }
-            return response.status(HTTP_STATUS.OK).json(responseFormat);
+            return response.status(httpStatus.OK).json(responseFormat);
         } catch (error) {
             next(error)
         } finally {

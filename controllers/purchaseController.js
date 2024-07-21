@@ -19,7 +19,7 @@ export const purchaseController = () => {
         }
     }
 
-    const createPurcase = async (request, response, next) => {
+    const createPurchase = async (request, response, next) => {
         const newPurchase = request.body
         try {
             const createPurchase = await prisma.purchase.create({
@@ -57,8 +57,8 @@ export const purchaseController = () => {
             await prisma.$disconnect()
         }
     }
-    
-    const updatePurchase = async (request,response,next) =>{
+
+    const updatePurchase = async (request, response, next) => {
         const { id } = request.params
         const purchaseId = id
         const newPurchaseData = request.body
@@ -80,7 +80,7 @@ export const purchaseController = () => {
             await prisma.$disconnect()
         }
     }
-    
+
     const deletePurchase = async (request, response, next) => {
         const { id } = request.params
         const purchaseId = id
@@ -104,7 +104,7 @@ export const purchaseController = () => {
 
     return {
         getPurchases,
-        createPurcase,
+        createPurchase,
         getPurchaseById,
         updatePurchase,
         deletePurchase
