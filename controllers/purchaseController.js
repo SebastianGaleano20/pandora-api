@@ -4,53 +4,20 @@ import httpStatus from '../helpers/httpStatus.js'
 const prisma = new PrismaClient()
 
 export const purchaseController = () => {
-    const getPurchases = async (_request, response, next) => {
+    const productBuyByUser = async (request, response, next) => {
+        const { body } = request
+        const userId = Number(body?.userId ?? null)
+        const productId = body?.productId ?? null
+        const quantity = request.body.quantity
         try {
-            const purchases = await prisma.purchase.findMany()
-            const responseFormat = {
-                data: purchases,
-                message: 'Purchases retrieved successfully'
-            }
-            return response.status(httpStatus.OK).json(responseFormat)
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
-        }
-    }
-
-    const createPurchase = async (request, response, next) => {
-        const newPurchase = request.body
-        try {
-            const createPurchase = await prisma.purchase.create({
-                data: newPurchase
-            })
-            const responseFormat = {
-                data: createPurchase,
-                message: 'Purchase created successfully'
-            }
-            return response.status(httpStatus.CREATED).json(responseFormat)
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
-        }
-    }
-
-    const getPurchaseById = async (request, response, next) => {
-        const { id } = request.params
-        const purchaseId = id
-        try {
-            const purchase = await prisma.purchase.findUnique({
-                where: {
-                    id: purchaseId
+            const productBuyUser = await prisma.purchase.create({
+                data: {
+                    userId,
+                    productId,
+                    quantity
                 }
             })
-            const responseFormat = {
-                data: purchase,
-                message: 'Purchase retrieved successfully'
-            }
-            return response.status(httpStatus.OK).json(responseFormat)
+            return response.status(httpStatus.CREATED).json(productBuyUser)
         } catch (error) {
             next(error)
         } finally {
@@ -58,56 +25,43 @@ export const purchaseController = () => {
         }
     }
 
-    const updatePurchase = async (request, response, next) => {
-        const { id } = request.params
-        const purchaseId = id
-        const newPurchaseData = request.body
+    const getPurchasesUser = async (request, response, next) => {
+        const { query } = request
+        const { userId } = Number(query?.id)
         try {
-            const purchase = await prisma.purchase.update({
+            const purchases = await prisma.purchase.findMany({
                 where: {
-                    id: purchaseId
+                    userId
                 },
-                data: newPurchaseData
-            })
-            const responseFormat = {
-                data: purchase,
-                message: 'Purchase update successfully'
-            }
-            return response.status(httpStatus.OK).json(responseFormat)
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
-        }
-    }
-
-    const deletePurchase = async (request, response, next) => {
-        const { id } = request.params
-        const purchaseId = id
-        try {
-            const purchase = await prisma.purchase.delete({
-                where: {
-                    id: purchaseId
+                select: {
+                    productId: true,
+                    userId: true,
+                    quantity: true,
+                    product: {
+                        select: {
+                            productName: true,
+                            price: true
+                        }
+                    },
+                    user: {
+                        firstName: true,
+                        lastName: true,
+                        email: true,
+                    }
                 }
             })
-            const responseFormat = {
-                data: purchase,
-                message: 'Purchases delete successfully'
-            }
-            return response.status(httpStatus.OK).json(responseFormat)
+
+            return response.status(httpStatus.OK).json(purchases)
         } catch (error) {
             next(error)
         } finally {
             await prisma.$disconnect()
         }
     }
-
     return {
-        getPurchases,
-        createPurchase,
-        getPurchaseById,
-        updatePurchase,
-        deletePurchase
+        productBuyByUser,
+        getPurchasesUser
     }
-
 }
+
+
