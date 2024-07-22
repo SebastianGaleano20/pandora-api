@@ -1,6 +1,6 @@
 import httpStatus from '../helpers/httpStatus.js'
 import { PrismaClient } from '@prisma/client'
-import jwt from 'jsonwebtoken'
+import { generateToken } from '../utils/tokenManagment.js'
 import { verified, encrypt } from '../utils/bcrypt.js'
 
 const prisma = new PrismaClient()
@@ -45,7 +45,7 @@ export const userController = () => {
         })
       }
 
-      const token = await generateToken({email})
+      const token = generateToken({ email, role: user.role })
 
       const isPasswordValid = await verified(password, user.password)
 
@@ -87,12 +87,6 @@ export const userController = () => {
     }
   }
 
-  const generateToken = async (data) => {
-  const token = await jwt.sign(data,process.env.SECRET_KEY, {
-    expiresIn: '2d'
-  })
-  return token
-  }
 
   return {
     register,
