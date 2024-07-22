@@ -1,6 +1,6 @@
 import httpStatus from '../helpers/httpStatus.js'
 import { PrismaClient } from '@prisma/client'
-import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { verified, encrypt } from '../utils/bcrypt.js'
 
 const prisma = new PrismaClient()
@@ -45,6 +45,8 @@ export const userController = () => {
         })
       }
 
+      const token = await generateToken({email})
+
       const isPasswordValid = await verified(password, user.password)
 
       if (!isPasswordValid) {
@@ -54,7 +56,8 @@ export const userController = () => {
       }
 
       return response.status(httpStatus.OK).json({
-        message: 'Login successful'
+        message: 'Login successful',
+        token
       })
     } catch (error) {
       next(error)
@@ -82,6 +85,13 @@ export const userController = () => {
     } finally {
       await prisma.$disconnect()
     }
+  }
+
+  const generateToken = async (data) => {
+  const token = await jwt.sign(data,process.env.SECRET_KEY, {
+    expiresIn: '2d'
+  })
+  return token
   }
 
   return {

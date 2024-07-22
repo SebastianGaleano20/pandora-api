@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { userController } from "../controllers/userController.js"
 import { schemaUserValidator } from "../middlewares/validations.js"
-import { userSchema, idUserSchema } from "../schemas/userSchema.js"
+import { userSchema } from "../schemas/userSchema.js"
 
 export const userRouter = () => {
     const userRouter = Router();
@@ -10,7 +10,7 @@ export const userRouter = () => {
     userRouter.route('/register')
         .post(schemaUserValidator(userSchema), register)
     userRouter.route('/login')
-        .post(schemaUserValidator(idUserSchema), login)
+        .post(login)
     userRouter.route('/profile/:id')
         .get(profile)
     

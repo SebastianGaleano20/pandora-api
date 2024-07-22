@@ -9,9 +9,3 @@ export const userSchema = Joi.object({
         isAdmin: Joi.boolean()
     })
 })
-
-export const idUserSchema = Joi.object({
-    params: Joi.object({
-        email: Joi.string().email().required(),
-    })
-})
