@@ -2,6 +2,7 @@ import { Router } from 'express'; //Router de express a utilizar
 import { productController } from '../controllers/productController.js'; //Controladores de mi api
 import { schemaProductValidator } from '../middlewares/validations.js';
 import { bodyProductSchema, idProductSchema, updateProductSchema } from '../schemas/productSchema.js'
+import { isAdmin } from '../middlewares/checkRole.js';
 
 export const productRoutes = () => {
     const productRouter = Router(); //Creamos el router de mi app
@@ -12,7 +13,7 @@ export const productRoutes = () => {
     //Creamos las rutas (url) de mi aplicacion con sus respectivos metodos
     productRouter.route('/products')
         .get(getProducts)
-        .post(schemaProductValidator(bodyProductSchema), createProduct)
+        .post(isAdmin, schemaProductValidator(bodyProductSchema), createProduct)
 
     productRouter.route('/products/:id')
         .get(schemaProductValidator(idProductSchema), getProductById)

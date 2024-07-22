@@ -45,7 +45,13 @@ export const userController = () => {
         })
       }
 
-      const token = generateToken({ email, role: user.role })
+      const token = generateToken({ data: { email, role: user.role } })
+      const refreshToken = generateToken({
+        data: { email, role: user.role },
+        isRefresh: true,
+        expiresIn: '2d'
+      }
+      )
 
       const isPasswordValid = await verified(password, user.password)
 
@@ -57,12 +63,31 @@ export const userController = () => {
 
       return response.status(httpStatus.OK).json({
         message: 'Login successful',
-        token
+        token,
+        refreshToken
       })
     } catch (error) {
       next(error)
     } finally {
       await prisma.$disconnect()
+    }
+  }
+
+  const refreshToken = async (request, response, next) => {
+    const { refreshToken } = request.body
+
+    try {
+      const { role, email } = verifyToken(refreshToken, true)
+      const token = generateToken({
+        data:{ email, role, message: 'Token refreshed successfully' }
+      })
+
+      return response.status(httpStatus.OK).json({
+        success: true,
+        token
+      })
+    } catch (error) {
+      next(error)
     }
   }
 
@@ -91,6 +116,7 @@ export const userController = () => {
   return {
     register,
     login,
-    profile
+    profile,
+    refreshToken
   }
 }

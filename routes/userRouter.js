@@ -5,7 +5,7 @@ import { userSchema } from "../schemas/userSchema.js"
 
 export const userRouter = () => {
     const userRouter = Router();
-    const { register, login, profile } = userController()
+    const { register, login, profile, refreshToken } = userController()
 
     userRouter.route('/register')
         .post(schemaUserValidator(userSchema), register)
@@ -13,6 +13,8 @@ export const userRouter = () => {
         .post(login)
     userRouter.route('/profile/:id')
         .get(profile)
+    userRouter.route('/refresh-token')
+        .post(refreshToken)
     
     return userRouter
 }

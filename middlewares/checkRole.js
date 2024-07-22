@@ -1,5 +1,5 @@
-import http_status from "../helpers/httpStatus"
-import { verifyToken } from "../utils/tokenManagment"
+import http_status from "../helpers/httpStatus.js"
+import { verifyToken } from "../utils/tokenManagment.js"
 
 export const isAdmin = (request, response, next) => {
     const headers = request.headers
@@ -17,7 +17,7 @@ export const isAdmin = (request, response, next) => {
     if (role !== ADMIN_ROLE) {
         return response.status(http_status.UNAUTHORIZED).json({
             success: false,
-            message: "Unauthorized"
+            message: "Unauthorized.role"
         })
     }
 
