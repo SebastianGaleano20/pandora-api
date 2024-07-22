@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'
 import { expressjwt as exjwt } from 'express-jwt';
 import { productRoutes } from './routes/producRouter.js';
 import { categoryRouter } from './routes/categoryRouter.js';
@@ -14,6 +15,10 @@ const SERVER_PORT = process.env.SERVER_PORT || 2010;
 const app = express(); //Creacion de mi servidor
 
 app.use(express.json()); //Middleware que permite leer JSON del request.body
+app.use(cors({
+    origin: '*',
+    methods: 'GET,POST,PATH,DELETE'
+}))
 
 app.use(exjwt({
     secret: process.env.SECRET_KEY,
