@@ -41,13 +41,18 @@ model User {
   lastName   String      @map("last_name") @db.VarChar(80)
   email      String      @unique @db.VarChar(254)
   password   String
-  isAdmin    Boolean     @default(false) @map("is_admin")
+  role       Role      @default(USER)
   createdAt  DateTime    @default(now()) @map("created_at")
   updateAt   DateTime    @updatedAt @map("update_at")
   purchase   Purchase[]
 
   @@unique([firstName, secondName, lastName])
   @@map("user")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model Purchase {
