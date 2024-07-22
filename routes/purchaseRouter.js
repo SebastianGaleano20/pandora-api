@@ -4,10 +4,13 @@ import { purchaseController } from "../controllers/purchaseController.js"
 export const purchaseRouter = () => {
     const purchaseRouter = Router()
 
-    const {productBuyByUser, getPurchasesUser} = purchaseController()
+    const { createPurchase, getPurchasesUser } = purchaseController()
 
     purchaseRouter.route('/purchases')
-        .post(productBuyByUser)
+        .post(createPurchase)
+
+    purchaseRouter.route('/purchases/:id')
         .get(getPurchasesUser)
+        
     return purchaseRouter
 }

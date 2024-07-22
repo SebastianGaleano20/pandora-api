@@ -4,7 +4,7 @@ import httpStatus from '../helpers/httpStatus.js'
 const prisma = new PrismaClient()
 
 export const purchaseController = () => {
-    const productBuyByUser = async (request, response, next) => {
+    const createPurchase = async (request, response, next) => {
         const { body } = request
         const userId = Number(body?.userId ?? null)
         const productId = body?.productId ?? null
@@ -26,8 +26,8 @@ export const purchaseController = () => {
     }
 
     const getPurchasesUser = async (request, response, next) => {
-        const { query } = request
-        const { userId } = Number(query?.id)
+        const { id } = request.params
+        const userId = Number(id)
         try {
             const purchases = await prisma.purchase.findMany({
                 where: {
@@ -44,9 +44,11 @@ export const purchaseController = () => {
                         }
                     },
                     user: {
-                        firstName: true,
-                        lastName: true,
-                        email: true,
+                        select: {
+                            firstName: true,
+                            lastName: true,
+                            email: true
+                        }
                     }
                 }
             })
@@ -59,7 +61,7 @@ export const purchaseController = () => {
         }
     }
     return {
-        productBuyByUser,
+        createPurchase,
         getPurchasesUser
     }
 }
