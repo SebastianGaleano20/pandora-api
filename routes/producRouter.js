@@ -17,8 +17,8 @@ export const productRoutes = () => {
 
     productRouter.route('/products/:id')
         .get(schemaProductValidator(idProductSchema), getProductById)
-        .patch(schemaProductValidator(updateProductSchema), updateProduct)
-        .delete(schemaProductValidator(idProductSchema), deleteProduct)
+        .patch(isAdmin, schemaProductValidator(updateProductSchema), updateProduct)
+        .delete(isAdmin, schemaProductValidator(idProductSchema), deleteProduct)
 
     return productRouter;
 }

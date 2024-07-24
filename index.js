@@ -23,7 +23,7 @@ app.use(exjwt({
     secret: process.env.SECRET_KEY,
     algorithms: ['HS256']
 }).unless({
-    path: ['/api/login', '/api/register', '/api/products', '/api/category']
+    path: ['/api/login', '/api/register', '/api/products','/api/products', '/api/category','/category/:id',]
 })
 )
 

@@ -1,6 +1,6 @@
 import httpStatus from '../helpers/httpStatus.js'
 import { PrismaClient } from '@prisma/client'
-import { generateToken } from '../utils/tokenManagment.js'
+import { generateToken, verifyToken } from '../utils/tokenManagment.js'
 import { verified, encrypt } from '../utils/bcrypt.js'
 
 const prisma = new PrismaClient()
