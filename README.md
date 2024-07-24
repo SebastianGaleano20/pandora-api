@@ -85,7 +85,7 @@
 ### Tablas en PostgreSQL
 
 | Nombre de tabla      | Contenido |
-| --------- | -----:|
+| --------- | :-----|
 | Products  | Datos de productos panificados |
 | Category     |   Categoria de productos panificados |
 | Users      |    Usuarios de mi aplicacion |
@@ -96,7 +96,7 @@
 #### Products 
 
 | Nombre de campo      | Tipo de dato |
-| --------- | -----:|
+| --------- | :-----|
 | productName  | String |
 | price     |  Float |
 | isVegan      |    Boolean |
@@ -124,7 +124,7 @@
 ### Category
 
 | Nombre de campo      | Tipo de dato |
-| --------- | -----:|
+| --------- | :-----|
 | name  | String |
 
 - Ejemplo de creación de una nueva categoria:
@@ -139,7 +139,7 @@
 ### User
 
 | Nombre de campo      | Tipo de dato |
-| --------- | -----:|
+| --------- | :-----|
 | firstName  | String |
 | secondName  | String |
 | lastName  | String |
@@ -163,7 +163,7 @@
 ### Purchases
 
 | Nombre de campo      | Tipo de dato |
-| --------- | -----:|
+| --------- | :-----|
 | userId  | Int |
 | productId  | String |
 | quantity  | Int |
