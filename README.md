@@ -118,7 +118,8 @@
    "stcok": True,
    "description": "Rico alfajorcito",
    "categoryId": 2
-}```
+}
+```
 
 ### Category
 
@@ -131,7 +132,8 @@
 ```json
 {
    "name": "Alfajor"
-}```
+}
+```
 
 
 ### User
@@ -155,7 +157,8 @@
    "email": "Lio10@gmail.com",
    "password": "Fulvo10",
    "role": "ADMIN",
-}```
+}
+```
 
 ### Purchases
 
@@ -172,7 +175,8 @@
    "userId": 1,
    "productId": "Ajkas23-14142asd",
    "quantity": 2
-}```
+}
+```
 
 ## Lista de tareas
 - [x] Instalar gestor de paquetes. (pnpm)
