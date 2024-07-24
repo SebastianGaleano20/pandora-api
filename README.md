@@ -113,9 +113,9 @@
 {
    "productName": "Alfajor de almendras",
    "price": 520.20,
-   "isVegan": True,
+   "isVegan": true,
    "image": "www.image.com/alfajor-almendras",
-   "stcok": True,
+   "stock": true,
    "description": "Rico alfajorcito",
    "categoryId": 2
 }
