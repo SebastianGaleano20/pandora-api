@@ -1,5 +1,10 @@
-# Pandora-api
-- API para una empresa panificadora.
+# PANDORA API 
+
+- API-RESTFUL  para panificadora
+
+## Dependencias
+                    
+ <img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="Javascript Logo" width="70"/> <img src="https://www.svgrepo.com/show/303658/nodejs-1-logo.svg" alt="Node.js Logo" width="70"/> <img  src="https://repository-images.githubusercontent.com/139898859/9617c480-81c2-11ea-94fc-322231ead1f0" width="100"> </img> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch-8JXtrnT0M69PmPhq9Rb6MLzs1mYYzVZw&s" width="100"> </img> <img  src="https://w7.pngwing.com/pngs/413/267/png-transparent-jwt-io-json-web-token-hd-logo.png" width="100"> </img> <img  src="https://raw.githubusercontent.com/joiful-ts/joiful/master/img/logo-icon-with-text-800x245.png" width="130"> </img> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMs4Pei68Y98iE7pyOS1b5pevi5wVZq3A59g&s" width="130"> </img>
 
 ## Lista de tareas
 - [x] Instalar gestor de paquetes. (pnpm)
