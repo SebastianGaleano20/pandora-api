@@ -107,11 +107,32 @@
 
 ** categoryId es una clave foranea **
 
+- Ejemplo de creación de un nuevo producto:
+
+```json
+{
+   "productName": "Alfajor de almendras",
+   "price": 520.20,
+   "isVegan": True,
+   "image": "www.image.com/alfajor-almendras",
+   "stcok": True,
+   "description": "Rico alfajorcito",
+   "categoryId": 2
+}
+
 ### Category
 
 | Nombre de campo      | Tipo de dato |
 | --------- | -----:|
 | name  | String |
+
+- Ejemplo de creación de una nueva categoria:
+
+```json
+{
+   "name": "Alfajor"
+}
+
 
 ### User
 
@@ -124,12 +145,34 @@
 | password  | String |
 | role  | Role |
 
+- Ejemplo de creación de un nuevo usuario:
+
+```json
+{
+   "firstName": "Lionel",
+   "secondName": "Andres",
+   "lastName": "Messi",
+   "email": "Lio10@gmail.com",
+   "password": "Fulvo10",
+   "role": "ADMIN",
+}
+
 ### Purchases
+
 | Nombre de campo      | Tipo de dato |
 | --------- | -----:|
 | userId  | Int |
 | productId  | String |
 | quantity  | Int |
+
+- Ejemplo de creación de una nueva compra:
+
+```json
+{
+   "userId": 1,
+   "productId": "Ajkas23-14142asd",
+   "quantity": 2
+}
 
 ## Lista de tareas
 - [x] Instalar gestor de paquetes. (pnpm)
