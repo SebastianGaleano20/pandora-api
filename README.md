@@ -8,8 +8,18 @@
  <img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="Javascript Logo" width="70"/> <img src="https://www.svgrepo.com/show/303658/nodejs-1-logo.svg" alt="Node.js Logo" width="70"/> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsC9Zl9jYsLYXA9lhxDCiJD0Y_PQakXzpzMA&s" alt="Node.js Logo" width="70"/>
 
 ## Dependencias
-                    
- <img  src="https://repository-images.githubusercontent.com/139898859/9617c480-81c2-11ea-94fc-322231ead1f0" width="100"> </img> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch-8JXtrnT0M69PmPhq9Rb6MLzs1mYYzVZw&s" width="130"> </img> <img  src="https://w7.pngwing.com/pngs/413/267/png-transparent-jwt-io-json-web-token-hd-logo.png" width="110"> </img> <img  src="https://raw.githubusercontent.com/joiful-ts/joiful/master/img/logo-icon-with-text-800x245.png" width="130"> </img> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMs4Pei68Y98iE7pyOS1b5pevi5wVZq3A59g&s" width="100"> </img>
+- Bcrypt": v5.1.1 <img  src="https://repository-images.githubusercontent.com/139898859/9617c480-81c2-11ea-94fc-322231ead1f0" width="100"></img> 
+
+- Express: v4.19.2 <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch-8JXtrnT0M69PmPhq9Rb6MLzs1mYYzVZw&s" width="130"> </img>
+
+- JWT: v9.0.2 <img  src="https://w7.pngwing.com/pngs/413/267/png-transparent-jwt-io-json-web-token-hd-logo.png" width="110"> </img>
+- Express-JWT: v8.4.1
+
+- Joi: v17.13.3 <img  src="https://raw.githubusercontent.com/joiful-ts/joiful/master/img/logo-icon-with-text-800x245.png" width="130"> </img> 
+
+- Prisma: v5.16.1 <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMs4Pei68Y98iE7pyOS1b5pevi5wVZq3A59g&s" width="100"></img>
+
+- PrismaClient: v5.16.1
 
 ## Endpoints
 
