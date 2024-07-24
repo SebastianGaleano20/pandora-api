@@ -91,7 +91,45 @@
 | Users      |    Usuarios de mi aplicacion |
 | Purchases      |    Compras de productos por usuarios  |
 
+### Modelos y tipo de datos
+- Para crear los campos en nuestra base de datos te recomiendo que los datos respeten el modelado con Prisma de las diferentes tablas: 
+#### Products 
 
+| Nombre de campo      | Tipo de dato |
+| --------- | -----:|
+| productName  | String |
+| price     |  Float |
+| isVegan      |    Boolean |
+| image      |    String  |
+| stock | Boolean    |
+| description |  String |
+| categoryId | Int  |
+
+** categoryId es una clave foranea **
+
+### Category
+
+| Nombre de campo      | Tipo de dato |
+| --------- | -----:|
+| name  | String |
+
+### User
+
+| Nombre de campo      | Tipo de dato |
+| --------- | -----:|
+| firstName  | String |
+| secondName  | String |
+| lastName  | String |
+| email  | String |
+| password  | String |
+| role  | Role |
+
+### Purchases
+| Nombre de campo      | Tipo de dato |
+| --------- | -----:|
+| userId  | Int |
+| productId  | String |
+| quantity  | Int |
 
 ## Lista de tareas
 - [x] Instalar gestor de paquetes. (pnpm)
