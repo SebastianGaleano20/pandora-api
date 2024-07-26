@@ -6,8 +6,16 @@ const prisma = new PrismaClient()
 //Controladores de los diferentes metodos HTTP de mi aplicación
 export const productController = () => {
     const getProducts = async (_request, response, next) => {
+        const { query } = request
+
         try {
-            const products = await prisma.product.findMany()
+            const products = await prisma.product.findMany({
+                  where: {
+                title: {
+                    contains: query?.productName ?? ''
+                }
+            }
+            })
             const responseFormat = {
                 data: products,
                 message: 'Products retrieved successfully'
