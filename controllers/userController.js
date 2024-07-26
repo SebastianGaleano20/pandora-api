@@ -45,14 +45,6 @@ export const userController = () => {
         })
       }
 
-      const token = generateToken({ data: { email, role: user.role } })
-      const refreshToken = generateToken({
-        data: { email, role: user.role },
-        isRefresh: true,
-        expiresIn: '2d'
-      }
-      )
-
       const isPasswordValid = await verified(password, user.password)
 
       if (!isPasswordValid) {
@@ -60,6 +52,14 @@ export const userController = () => {
           message: 'Invalid credentials'
         })
       }
+
+      const token = generateToken({ data: { email, role: user.role } })
+      const refreshToken = generateToken({
+        data: { email, role: user.role },
+        isRefresh: true,
+        expiresIn: '2d'
+      }
+      )
 
       return response.status(httpStatus.OK).json({
         message: 'Login successful',
