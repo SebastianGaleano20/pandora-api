@@ -5,8 +5,16 @@ const prisma = new PrismaClient()
 
 export const categoryController = () => {
     const getCategory = async (_request, response, next) => {
+        const { query } = request
+
         try {
-            const category = await prisma.category.findMany()
+            const category = await prisma.category.findMany({
+                where: {
+                    name: {
+                        contains: query?.name ?? ''
+                    }
+                }
+            })
             const responseFormat = {
                 data: category,
                 message: 'category retrieved successfully'
