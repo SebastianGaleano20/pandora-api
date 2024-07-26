@@ -1,5 +1,5 @@
 //Funcion de orden superior
-export const schemaProductValidator = (schema) => async (request, _response, next) => {
+export const schemaValidator = (schema) => async (request, _response, next) => {
     const { error } = schema.validate({
         body: request.body,
         params: request.params,
@@ -11,7 +11,7 @@ export const schemaProductValidator = (schema) => async (request, _response, nex
     error ? next(error) : next()
 }
 
-export const schemaCategoryValidator = (schema) => async (request, _response, next) => {
+/* export const schemaCategoryValidator = (schema) => async (request, _response, next) => {
     const { error } = schema.validate({
         body: request.body,
         params: request.params,
@@ -33,4 +33,4 @@ export const schemaUserValidator = (schema) => async (request, _response, next) 
         allowUnknown: true
     })
     error ? next(error) : next()
-}
+} */
