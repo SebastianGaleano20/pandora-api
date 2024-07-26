@@ -1,8 +1,9 @@
+import httpStatus from '../helpers/httpStatus.js'
 //Objeto que contiene los diferentes errores de mi aplicacion
 const ERROR_HANDLER = {
-    defaultError: (response, error) => {
+     defaultError: (response, error) => {
         response
-            .status(500)
+            .status(httpStatus.INTERNAL_SERVER_ERROR)
             .json({
                 success: false,
                 message: error.message
