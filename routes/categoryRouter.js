@@ -10,11 +10,11 @@ export const categoryRouter = () => {
 
     categoryRouter.route('/category')
         .get(getCategory)
-        .post(isAdmin, schemaCategoryValidator(bodyCategorySchema), createCategory)
+        .post(isAdmin, schemaValidator(bodyCategorySchema), createCategory)
 
     categoryRouter.route('/category/:id')
-        .get(schemaCategoryValidator(idCategorySchema), getCategoryById)
-        .patch(isAdmin, schemaCategoryValidator(bodyCategorySchema), updateCategory)
-        .delete(isAdmin, schemaCategoryValidator(idCategorySchema), deleteCategory)
+        .get(schemaValidator(idCategorySchema), getCategoryById)
+        .patch(isAdmin, schemaValidator(bodyCategorySchema), updateCategory)
+        .delete(isAdmin, schemaValidator(idCategorySchema), deleteCategory)
     return categoryRouter
 }
