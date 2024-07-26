@@ -11,7 +11,7 @@ export const productController = () => {
         try {
             const products = await prisma.product.findMany({
                   where: {
-                title: {
+                productName: {
                     contains: query?.productName ?? ''
                 }
             }
