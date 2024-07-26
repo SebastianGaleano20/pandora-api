@@ -13,12 +13,12 @@ export const productRoutes = () => {
     //Creamos las rutas (url) de mi aplicacion con sus respectivos metodos
     productRouter.route('/products')
         .get(getProducts)
-        .post(isAdmin, schemaProductValidator(bodyProductSchema), createProduct)
+        .post(isAdmin, schemaValidator(bodyProductSchema), createProduct)
 
     productRouter.route('/products/:id')
-        .get(schemaProductValidator(idProductSchema), getProductById)
-        .patch(isAdmin, schemaProductValidator(updateProductSchema), updateProduct)
-        .delete(isAdmin, schemaProductValidator(idProductSchema), deleteProduct)
+        .get(schemaValidator(idProductSchema), getProductById)
+        .patch(isAdmin, schemaValidator(updateProductSchema), updateProduct)
+        .delete(isAdmin, schemaValidator(idProductSchema), deleteProduct)
 
     return productRouter;
 }
