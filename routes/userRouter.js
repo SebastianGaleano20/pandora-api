@@ -9,7 +9,7 @@ export const userRouter = () => {
     const { register, login, profile, refreshToken } = userController()
 
     userRouter.route('/register')
-        .post(schemaUserValidator(userSchema), register)
+        .post(schemaValidator(userSchema), register)
     userRouter.route('/login')
         .post(login)
     userRouter.route('/profile/:id')
