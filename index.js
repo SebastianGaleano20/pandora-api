@@ -26,9 +26,15 @@ app.use(exjwt({
     secret: process.env.SECRET_KEY,
     algorithms: ['HS256']
 }).unless({
-    path: ['/api/login', '/api/register', '/api/products', '/api/products:id', '/api/category', '/api/category/:id', '/api/refresh-token']
-})
-)
+    path: [
+        '/api/login',
+        '/api/register',
+        '/api/products',
+        '/api/category',
+        '/api/refresh-token',
+        '/api/purchases'
+    ]
+}))
 
 app.use('/api', productRoutes(), userRouter(), categoryRouter(), purchaseRouter())
 

@@ -27,6 +27,7 @@ export const categoryController = () => {
         }
     }
     const createCategory = async (request, response, next) => {
+        console.log(request.body)
         const newCategory = request.body
         try {
             const createdCategory = await prisma.category.create({
@@ -46,8 +47,8 @@ export const categoryController = () => {
     }
 
     const getCategoryById = async (request, response, next) => {
-        const { query } = request
-        const categoryId = Number(query)
+        const { id } = request.params
+        const categoryId = Number(id)
         try {
             const category = await prisma.category.findUnique({
                 where: {

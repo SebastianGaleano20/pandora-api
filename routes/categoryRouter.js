@@ -1,7 +1,5 @@
 import { Router } from 'express';
 import { categoryController } from '../controllers/categoryController.js'
-import { schemaValidator } from '../middlewares/validations.js'
-import { bodyCategorySchema, idCategorySchema } from '../schemas/categorySchema.js'
 import { isAdmin } from '../middlewares/checkRole.js';
 
 export const categoryRouter = () => {
@@ -10,11 +8,11 @@ export const categoryRouter = () => {
 
     categoryRouter.route('/category')
         .get(getCategory)
-        .post(isAdmin, schemaValidator(bodyCategorySchema), createCategory)
+        .post(isAdmin, createCategory)
 
     categoryRouter.route('/category/:id')
         .get(getCategoryById)
-        .patch(isAdmin, schemaValidator(bodyCategorySchema), updateCategory)
-        .delete(isAdmin, schemaValidator(idCategorySchema), deleteCategory)
+        .patch(isAdmin, updateCategory)
+        .delete(isAdmin, deleteCategory)
     return categoryRouter
 }

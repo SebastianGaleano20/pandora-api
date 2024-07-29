@@ -17,7 +17,11 @@ export const purchaseController = () => {
                     quantity
                 }
             })
-            return response.status(httpStatus.CREATED).json(productBuyUser)
+            const responseFormat = {
+                data: productBuyUser,
+                message: 'New purchase created successfully'
+            }
+            return response.status(httpStatus.CREATED).json(responseFormat)
         } catch (error) {
             next(error)
         } finally {
