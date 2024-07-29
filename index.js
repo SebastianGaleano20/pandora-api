@@ -28,7 +28,7 @@ app.use('/api/upload', (request, response)=>{
             console.log(error)
             return response.status(httpStatus.BAD_REQUEST).send('Upload failed')
         }
-        response.status(httpStatus.OK).send('File uploaded')
+        response.status(httpStatus.OK).json(request.file)
     })
 })
 

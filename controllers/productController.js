@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import httpStatus from '../helpers/httpStatus.js'
+import { upload } from '../utils/uploadFile.js'
+import { deleteFile } from '../utils/s3.js'
 
 const prisma = new PrismaClient()
 
@@ -29,21 +31,57 @@ export const productController = () => {
     }
 
     const createProduct = async (request, response, next) => {
-        const newProduct = request.body;
-        try {
-            const createdProduct = await prisma.product.create({
-                data: newProduct
-            })
-            const responseFormat = {
-                data: createdProduct,
-                message: 'Product created successfully'
+        function stringToBoolean(str) {
+            if (typeof str !== 'string') {
+              return null;
             }
-            return response.status(httpStatus.CREATED).json(responseFormat);
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
-        }
+            
+            switch (str.toLowerCase()) {
+              case 'true':
+                return true;
+              case 'false':
+                return false;
+              default:
+                return null;
+            }
+          }
+        
+        upload(request, response, async (error) => {
+            if (error) {
+                next(error)
+            }
+            const {
+                productName,
+                price,
+                isVegan,
+                stock,
+                description,
+                categoryId
+            } = request.body;
+
+            try {
+                const createdProduct = await prisma.product.create({
+                    data: {
+                        productName,
+                        price: Number(price),
+                        isVegan: stringToBoolean(isVegan),
+                        stock: stringToBoolean(stock),
+                        description,
+                        categoryId: Number(categoryId),
+                        image: request.file.location
+                    }
+                })
+                const responseFormat = {
+                    data: createdProduct,
+                    message: 'Product created successfully'
+                }
+                return response.status(httpStatus.CREATED).json(responseFormat);
+            } catch (error) {
+                next(error)
+            } finally {
+                await prisma.$disconnect()
+            }
+        })
     }
 
     const getProductById = async (request, response, next) => {
@@ -68,56 +106,76 @@ export const productController = () => {
     }
 
     const updateProduct = async (request, response, next) => {
-        const { id } = request.params
-        const productId = id
-        const newProductData = request.body
+        upload(request, response, async (error) => {
+            if (error) {
+                next(error)
+            }
 
-        try {
-            const product = await prisma.product.update({
-                where: {
-                    id: productId
-                },
-                data: newProductData
+            const { id } = request.params
+            const productId = id
+            const newProductData = request.body
+
+            try {
+                const productUpdate = await prisma.books.findUnique({
+                    where: {
+                        id: productId
+                    }
+                })
+
+                const product = await prisma.product.update({
+                    where: {
+                        id: productId
+                    },
+                    data: {
+                        ...newProductData,
+                        image: request.file.location
+                    }
+                })
+                const deleteKey = productUpdate.image.split('/').pop()
+                await deleteFile(deleteKey)
+
+                const responseFormat = {
+                    data: productUpdate,
+                    message: 'Product update successfully'
+                }
+                return response.status(httpStatus.OK).json(responseFormat);
+            } catch (error) {
+                next(error)
+            } finally {
+                await prisma.$disconnect()
             }
-            )
-            const responseFormat = {
-                data: product,
-                message: 'Product update successfully'
-            }
-            return response.status(httpStatus.OK).json(responseFormat);
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
-        }
+        })
     }
 
     const deleteProduct = async (request, response, next) => {
-        const { id } = request.params
-        const productId = id
-        try {
-            const product = await prisma.product.delete({
-                where: {
-                    id: productId
+            const { id } = request.params
+            const productId = id
+            try {
+                const product = await prisma.product.delete({
+                    where: {
+                        id: productId
+                    }
+                })
+                const deleteKey = product.image.split('/').pop()
+                await deleteFile(deleteKey)
+
+                const responseFormat = {
+                    data: product,
+                    message: 'Product delete successfully'
                 }
-            })
-            const responseFormat = {
-                data: product,
-                message: 'Product delete successfully'
+                return response.status(httpStatus.OK).json(responseFormat);
+            } catch (error) {
+                next(error)
+            } finally {
+                await prisma.$disconnect()
             }
-            return response.status(httpStatus.OK).json(responseFormat);
-        } catch (error) {
-            next(error)
-        } finally {
-            await prisma.$disconnect()
+        }
+
+        return {
+            getProducts,
+            createProduct,
+            getProductById,
+            deleteProduct,
+            updateProduct
         }
     }
-
-    return {
-        getProducts,
-        createProduct,
-        getProductById,
-        deleteProduct,
-        updateProduct
-    }
-}
