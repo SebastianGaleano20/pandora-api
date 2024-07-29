@@ -1,7 +1,11 @@
 # PANDORA API 
 
 - API-RESTFUL  para panificadora
-- Aplicacion con metodos 
+- Conectado a Base de datos relacional PostgreSQL y nube AWS
+- Validaciones de datos con Joi
+- Hash de contraseñas
+- Creacion y validacion de Tokens
+- Schemas y modelos con Prisma
 
 ## Lenguajes y entorno
 <img src="https://www.svgrepo.com/show/303658/nodejs-1-logo.svg" alt="Node.js Logo" width="70"/> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsC9Zl9jYsLYXA9lhxDCiJD0Y_PQakXzpzMA&s" alt="Node.js Logo" width="70"/>
