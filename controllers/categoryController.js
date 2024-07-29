@@ -4,7 +4,7 @@ import httpStatus from '../helpers/httpStatus.js'
 const prisma = new PrismaClient()
 
 export const categoryController = () => {
-    const getCategory = async (_request, response, next) => {
+    const getCategory = async (request, response, next) => {
         const { query } = request
 
         try {
@@ -46,8 +46,8 @@ export const categoryController = () => {
     }
 
     const getCategoryById = async (request, response, next) => {
-        const { id } = request.params
-        const categoryId = Number(id)
+        const { query } = request
+        const categoryId = Number(query)
         try {
             const category = await prisma.category.findUnique({
                 where: {

@@ -7,24 +7,17 @@
 <img src="https://www.svgrepo.com/show/303658/nodejs-1-logo.svg" alt="Node.js Logo" width="70"/> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsC9Zl9jYsLYXA9lhxDCiJD0Y_PQakXzpzMA&s" alt="Node.js Logo" width="70"/>
 
 ## Dependencias
-- Bcrypt": v5.1.1 
-<img  src="https://repository-images.githubusercontent.com/139898859/9617c480-81c2-11ea-94fc-322231ead1f0" width="100"></img> 
-
-- Express: v4.19.2 
-<img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRch-8JXtrnT0M69PmPhq9Rb6MLzs1mYYzVZw&s" width="110"> </img>
-
-- JWT: v9.0.2 
-<img  src="https://w7.pngwing.com/pngs/413/267/png-transparent-jwt-io-json-web-token-hd-logo.png" width="110"> </img>
+- Dotenv: v16.4.5
+- Express: v4.19.2
 - Express-JWT: v8.4.1
-
-- Joi: v17.13.3 
-<img  src="https://raw.githubusercontent.com/joiful-ts/joiful/master/img/logo-icon-with-text-800x245.png" width="130"> </img> 
-
-- Prisma: v5.16.1 
-<img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMs4Pei68Y98iE7pyOS1b5pevi5wVZq3A59g&s" width="100"></img>
-
+- JWT: v9.0.2 
+- Bcrypt": v5.1.1
+- Prisma: v5.16.1
 - PrismaClient: v5.16.1
-
+- Joi: v17.13.3
+- Multer: v1.4.5-lts.1
+- Multer-s3: v2.10.0
+- AWS-sdk: v2.1664.0
 ## Endpoints
 
 #### Products
@@ -50,9 +43,27 @@
 #####  `GET/api/category`
 - Obtiene todos los datos de las categorias en nuestra base de datos
 - Puede ser utilizado por USER y ADMIN
+
+Response:
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Budin",
+            "createdAt": "2024-07-20T23:54:09.590Z",
+            "updateAt": "2024-07-20T23:56:58.979Z"
+        }
+    ],
+    "message": "category retrieved successfully"
+}
+```
+
 #####  `GET/api/category:id`
 - Obtiene todos los datos de la categoria con el id indicado en nuestra base de datos
 - Puede ser utilizado por USER y ADMIN
+
+
 #####  `POST/api/category`
 - Crea una nueva categoria en nuestra base de datos
 - Solo ADMIN puede utilizar este endpoint.
@@ -210,3 +221,19 @@
 - [x] Configurar Prisma Client
 - [x] Modificar funciones controllers con prisma (CRUD)
 - [x] Instalar Joi y configurar middleware
+- [x] Crear y configurar schemas
+- [x] Hashear/encriptar contraseñas de usuarios
+- [x] Añadir token y refresh a contraseñas 
+- [x] Implementar cors
+- [x] Configurar expressJWT
+- [x] Crear middleware para checkear rol de usuario
+- [] Configurar multer y multer-s3
+- [] Configurar aws-sdk
+- [] Verificar aplicacion:
+   - [] Metodos HTTP funcionando
+   - [] Registro y logeo de usuarios correctamente configurados
+   - [] Obtener datos de los endpoints sin token (products/category)
+   - [] Verificar que solo ADMIN pueda crear productos/categorias en mi bd
+   - [] Verificar que USER pueda crear purchases
+   - [] Verificar que toker refresh funcione correctamente
+   - [] Verificar que se puedan obtener datos con fetch

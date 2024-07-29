@@ -57,7 +57,7 @@ export const userController = () => {
       const refreshToken = generateToken({
         data: { email, role: user.role },
         isRefresh: true,
-        expiresIn: '2d'
+        expiresIn: '7d'
       }
       )
 

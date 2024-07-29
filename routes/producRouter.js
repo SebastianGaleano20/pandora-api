@@ -1,6 +1,6 @@
 import { Router } from 'express'; //Router de express a utilizar
 import { productController } from '../controllers/productController.js'; //Controladores de mi api
-import { schemaProductValidator } from '../middlewares/validations.js';
+import { schemaValidator } from '../middlewares/validations.js';
 import { bodyProductSchema, idProductSchema, updateProductSchema } from '../schemas/productSchema.js'
 import { isAdmin } from '../middlewares/checkRole.js';
 
